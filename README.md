@@ -43,10 +43,10 @@ graph TD
     A[Data Teams] --> B[Run Generator Notebooks]
     B --> C[AI Generates Descriptions]
     C --> D[Save to Tracking Database]
-    D --> E[Business Users Review in Streamlit]
+    D --> E[Business Users Review in Metaflow App]
     E --> F{Approve/Edit/Reject}
     F -->|Approved| G[Run Importer Notebooks]
-    F -->|Needs Edit| H[Edit in Streamlit]
+    F -->|Needs Edit| H[Edit in Metaflow App]
     F -->|Rejected| I[Mark as Rejected]
     H --> G
     G --> J[Apply to Data Catalog]
@@ -60,7 +60,7 @@ graph TD
 
 ```bash
 # Clone or download the project
-cd MetaFlow
+cd Metaflow
 
 # Run automated setup (installs from app/requirements.txt)
 python setup.py
@@ -155,20 +155,6 @@ streamlit run app/app.py
 - User attribution and timestamps
 - Comments and change details
 
-## 💰 Cost Management
-
-### OpenAI API Costs
-- **GPT-4**: ~$0.03 per 1K tokens
-- **GPT-3.5-turbo**: ~$0.002 per 1K tokens
-- **Average column**: 100-200 tokens
-- **Average table**: 200-400 tokens
-
-### Example Costs
-- 100 columns with GPT-4: ~$0.30-$0.60
-- 20 tables with GPT-4: ~$0.20-$0.40
-- 1000 columns with GPT-3.5-turbo: ~$0.40-$0.80
-
-Cost tracking is built into the notebooks with detailed reporting.
 
 ## 🔧 Configuration Options
 
@@ -258,36 +244,9 @@ streamlit run app/app.py
 3. Deploy using `app/databricks_app.yml` configuration
 4. Access through Databricks Apps interface
 
-## 🤝 Contributing
-
-To contribute improvements:
-1. Maintain the organized folder structure
-2. Update documentation for any changes
-3. Test changes with `test_installation.py`
-4. Follow existing code patterns and style
-5. Add appropriate error handling and logging
-
 ## 📚 Additional Resources
 
 - [Notebook Documentation](code/README.md) - Detailed notebook usage guide
 - [Integration Summary](INTEGRATION_SUMMARY.md) - Complete technical overview
 - [OpenAI API Documentation](https://platform.openai.com/docs)
 - [Databricks SQL Reference](https://docs.databricks.com/sql/language-manual/index.html)
-
-## 📞 Support
-
-For issues and questions:
-1. Run `python test_installation.py` for diagnostics
-2. Check the troubleshooting section above
-3. Review application logs and error messages
-4. Verify database connectivity and permissions
-5. Contact your Databricks administrator
-
-## 🏆 Success Metrics
-
-The organized project structure provides:
-- ✅ **Clean Separation** of concerns (app, database, notebooks)
-- ✅ **Easy Maintenance** with logical file organization
-- ✅ **Scalable Architecture** supporting growth and extensions
-- ✅ **Developer Friendly** with clear structure and documentation
-- ✅ **Production Ready** with proper configuration management
