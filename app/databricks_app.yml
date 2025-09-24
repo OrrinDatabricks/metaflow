@@ -1,0 +1,42 @@
+# Databricks App Configuration
+# This file configures the app for deployment in Databricks Apps
+
+name: metadata-enrichment-tracker
+display_name: "Metadata Enrichment Tracker"
+description: "Track and approve bulk-generated metadata enrichment for data assets"
+
+# App configuration
+app:
+  # Main entry point
+  command: ["streamlit", "run", "app.py", "--server.port", "8080", "--server.address", "0.0.0.0"]
+  
+  # Environment variables
+  env:
+    - name: STREAMLIT_SERVER_HEADLESS
+      value: "true"
+    - name: STREAMLIT_SERVER_ENABLE_CORS
+      value: "false"
+    - name: STREAMLIT_SERVER_ENABLE_XSRF_PROTECTION
+      value: "false"
+    - name: STREAMLIT_BROWSER_GATHER_USAGE_STATS
+      value: "false"
+
+# Resource requirements
+resources:
+  cpu: "1"
+  memory: "2Gi"
+
+# Health check
+health_check:
+  path: "/_stcore/health"
+  port: 8080
+  initial_delay_seconds: 30
+  period_seconds: 10
+  timeout_seconds: 5
+  failure_threshold: 3
+
+# Networking
+networking:
+  ingress:
+    enabled: true
+    port: 8080
